@@ -1,2 +1,2 @@
 # dicobo
-Self managed digital cookbook
+Self managed digital cookbook with Java Spring and JavaScript React

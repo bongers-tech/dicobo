@@ -1,0 +1,124 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <changeSet author="bongers" id="1623683320070-1">
+        <createTable tableName="ingredient">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="PK_INGREDIENT"/>
+            </column>
+            <column name="name" type="VARCHAR(250)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="amount" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="unit" type="VARCHAR(250)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="recipe_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_by" type="VARCHAR(255)"/>
+            <column name="modified_date" type="TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="bongers" id="1623683320070-2">
+        <createTable tableName="recipe">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="PK_RECIPE"/>
+            </column>
+            <column name="name" type="VARCHAR(250)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="bongers" id="1623683320070-3">
+        <createTable tableName="instruction">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="PK_INSTRUCTION"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="bongers" id="1623683320070-4">
+        <createTable tableName="tag">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="PK_TAG"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="bongers" id="1623683320070-5">
+        <createTable tableName="user">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="PK_USER"/>
+            </column>
+            <column name="first_name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="insertion" type="VARCHAR(20)"/>
+            <column name="last_name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="username" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="active" type="BIT"/>
+            <column name="token" type="VARCHAR(40)"/>
+            <column name="role_name" type="VARCHAR(255)"/>
+            <column name="last_login" type="TIMESTAMP"/>
+            <column name="created_by" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_by" type="VARCHAR(255)"/>
+            <column name="modified_date" type="TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="bongers" id="1623683320070-11">
+        <addUniqueConstraint columnNames="id" constraintName="UC_INGREDIENT_ID_COL" tableName="ingredient"/>
+    </changeSet>
+
+    <changeSet author="bongers" id="1623683320070-12">
+        <addUniqueConstraint columnNames="id" constraintName="UC_INSTRUCTION_ID_COL" tableName="instruction"/>
+    </changeSet>
+
+    <changeSet author="bongers" id="1623683320070-13">
+        <addUniqueConstraint columnNames="id" constraintName="UC_RECIPE_ID_COL" tableName="recipe"/>
+    </changeSet>
+
+    <changeSet author="bongers" id="1623683320070-14">
+        <addUniqueConstraint columnNames="id" constraintName="UC_TAG_ID_COL" tableName="tag"/>
+    </changeSet>
+
+    <changeSet author="bongers" id="1623683320070-15">
+        <addUniqueConstraint columnNames="id" constraintName="UC_USER_ID_COL" tableName="user"/>
+    </changeSet>
+
+    <changeSet author="bongers" id="1567269568885-16">
+        <addForeignKeyConstraint baseColumnNames="recipe_id" baseTableName="ingredient"
+                                 constraintName="FK_INGREDIENT_RECIPE"
+                                 deferrable="false" initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="recipe" />
+    </changeSet>
+
+</databaseChangeLog>
